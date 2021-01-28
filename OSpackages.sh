@@ -199,7 +199,11 @@ function PrepChroot {
       rm -f /tmp/*.rpm || \
         err_exit "Failed cleaning out stale RPMs"
    fi
-
+   
+    # Enabling repos in the builder box
+    yum-config-manager --disable "*" > /dev/null
+    yum-config-manager --enable "$OSREPOS" > /dev/null
+   
    # Stage our base RPMs
    yumdownloader --destdir=/tmp "${BASEPKGS[@]}"
    if [[ ${REPORPMS:-} != '' ]]
@@ -234,9 +238,12 @@ function PrepChroot {
 # Install selected package-set into chroot-dev
 function MainInstall {
    local YUMCMD
+    # Enabling repos in the builder box
+    yum-config-manager --disable "*" > /dev/null
+    yum-config-manager --enable "$OSREPOS" > /dev/null
 
    YUMCMD="yum --nogpgcheck --installroot=${CHROOTMNT} "
-   YUMCMD+="--disablerepo=* --enablerepo=${OSREPOS} install -y "
+   YUMCMD+="install -y "
 
    # If RPM-file not specified, use a group from repo metadata
    if [[ ${RPMFILE} == "UNDEF" ]]
