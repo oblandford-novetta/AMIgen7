@@ -125,13 +125,20 @@ function GetDefaultRepos {
    fi
 
    case $( rpm -qf /etc/os-release --qf '%{name}' ) in
-      centos-linux-release | centos-stream-release | centos-release)
+      centos-linux-release | centos-stream-release )
          BASEREPOS=(
             baseos
             appstream
             extras
          )
          ;;
+      centos-release )
+        BASEREPOS=(
+            base
+            updates
+            extras
+        )
+        ;;
       redhat-release-server|redhat-release)
          BASEREPOS=(
             # RHUI 2 repo names
