@@ -11,7 +11,6 @@ MINXTRAPKGS=(
       chrony
       cloud-init
       cloud-utils-growpart
-      dhcp-client
       dracut-config-generic
       firewalld
       gdisk
@@ -125,13 +124,14 @@ function GetDefaultRepos {
    fi
 
    case $( rpm -qf /etc/os-release --qf '%{name}' ) in
-      centos-linux-release | centos-stream-release )
-         BASEREPOS=(
-            baseos
-            appstream
-            extras
-         )
-         ;;
+### Needed to handle CentOS 8
+##      centos-linux-release | centos-stream-release )
+##         BASEREPOS=(
+##            baseos
+##            appstream
+##            extras
+##         )
+##         ;;
       centos-release )
         BASEREPOS=(
             base
