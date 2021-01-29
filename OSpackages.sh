@@ -20,10 +20,7 @@ MINXTRAPKGS=(
       grubby
       kernel
       kexec-tools
-      libnsl
       lvm2
-      rng-tools
-      unzip
    )
 EXCLUDEPKGS=(
       aic94xx-firmware
