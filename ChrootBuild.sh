@@ -339,7 +339,6 @@ INCLUDE_PKGS+=(
     grub2-tools
     iptables-services
     iptables-utils
-    kernel
     kexec-tools
     lvm2
     ntp
@@ -354,7 +353,6 @@ INCLUDE_PKGS+=(
     tar
     vim-common
     wget
-    yum-utils
 )
 if [[ -n "$FIPSRPM" ]];
 then
